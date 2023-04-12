@@ -31,8 +31,6 @@ module ALU32(in0,in1,op,out,of_detect);
             of_detect <= val[31:31];
         end else if (op == 3 | op == 4) begin
             val <= in0 - in1;
-            $displayb(val);
-            $displayb(val);
             out <= val[30:0];
             of_detect <= val[31:31];
         end
