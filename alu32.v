@@ -8,6 +8,7 @@ ALUオペコード
 0101 NOR
 0110 右シフト
 0111 左シフト
+1000 in_0を12bit左シフトしたのちin1を加算。(U-Type用)
 仕様メモ
 ビットシフトする場合in1に数字が入ることを期待しない。仮に数字が入力されていたとしても一切無視する。
 */
@@ -19,7 +20,7 @@ module ALU32(in0,in1,op,out,of_detect,zero_detect);
     output reg of_detect;
     output reg zero_detect;
     reg [31:0] val;
-    always @* begin
+    always @(op) begin
         if (op==0) begin
             out <= in0&in1;
         end
@@ -42,8 +43,12 @@ module ALU32(in0,in1,op,out,of_detect,zero_detect);
         end
         else if(op == 6) begin
             out <= in0 >> 1;
-        end else if(op == 7) begin
+        end 
+        else if(op == 7) begin
             out <= in0 << 1;
+        end
+        else if(op == 8) begin
+            out <= {in0[19:0],2'b000000000000} + in1;
         end
     end
 endmodule
