@@ -11,7 +11,7 @@ module U_exec(op,in,out,pcop,pcvalue);
     reg[1:0] pcop_reg;
     assign out = out_reg;
     assign pcop = pcop_reg;
-    always @(op) begin
+    always @(op != 0) begin
         case (op)
         7'b0110111: out_reg <= {in,12'b000000000000};
         7'b0010111: out_reg <= {in,12'b000000000000} + pcvalue;

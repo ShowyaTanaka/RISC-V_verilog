@@ -2,7 +2,8 @@
 `define  ZERO           1'b0           // Rename to Zero
 `define  LOW            1'b0           // Rename to Zero
 `define  HIGH           1'b1           // Rename to High
-
+`include "DW_ram_2r_w_s_dff.v"
+//rd_1,rd_2さえあれば勝手に出力する。
 module rf32x32(
 		// clock and reset
 		clk,reset,
